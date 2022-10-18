@@ -24,6 +24,12 @@ app.post("/", async (req: Request, res: Response) => {
   return res.status(200).json(user);
 });
 
+app.get("/mantap", (req,res) => {
+    res.json({
+    mantap: "sop"
+  })
+})
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
