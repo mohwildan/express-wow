@@ -1,14 +1,27 @@
 import express, { Express, Response, Request } from "express";
 import cors from "cors";
+import prisma from "../prisma/prisma";
 
 const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (_req: Request, res: Response) => {
-  res.json({
-    mantap: "sip ma",
+app.get("/", async (_req: Request, res: Response) => {
+  const user = await prisma.user.findMany();
+  res.status(200).json(user);
+});
+
+app.post("/", async (req: Request, res: Response) => {
+  const { name, email, password } = req.params;
+  const user = await prisma.user.create({
+    data: {
+      name,
+      email,
+      password,
+    },
   });
+
+  return res.status(200).json(user);
 });
 
 const port = process.env.PORT || 3000;
