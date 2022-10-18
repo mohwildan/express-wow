@@ -1,10 +1,8 @@
 import express, { Express, Response, Request } from "express";
-import cors from "cors";
 import prisma from "../prisma/prisma";
 
 const app: Express = express();
 app.use(express.json());
-app.use(cors());
 
 app.get("/", async (_req: Request, res: Response) => {
   const user = await prisma.user.findMany();
