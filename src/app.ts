@@ -7,7 +7,7 @@ app.use(cors());
 
 app.get("/", (_req: Request, res: Response) => {
   res.json({
-    mantap: "sip",
+    mantap: "sip mas",
   });
 });
 
