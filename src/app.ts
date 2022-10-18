@@ -12,7 +12,7 @@ app.get("/", async (_req: Request, res: Response) => {
 });
 
 app.post("/", async (req: Request, res: Response) => {
-  const { name, email, password } = req.params;
+  const { name, email, password } = req.body;
   const user = await prisma.user.create({
     data: {
       name,
@@ -24,11 +24,11 @@ app.post("/", async (req: Request, res: Response) => {
   return res.status(200).json(user);
 });
 
-app.get("/mantap", (req,res) => {
-    res.json({
-    mantap: "sop"
-  })
-})
+app.get("/mantap", (req, res) => {
+  res.json({
+    mantap: "sop",
+  });
+});
 
 const port = process.env.PORT || 3000;
 
